@@ -1,0 +1,68 @@
+﻿@model  MVC_Cultuurhuis.Models.VoorstellingenGenreModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+    <div class="Header-index">
+        <div class="Header-opaque">
+
+        </div>
+    </div>
+
+    <div class="Genre-nav">
+        <div class="container">
+            <ul class="Genre-ul">
+            @foreach(var genre in Model.Genres)
+            {
+                <li>@Html.ActionLink(genre.GenreNaam, "Index", new { id = @genre.GenreNr})</li>
+            }
+            </ul>
+        </div>
+    </div>
+    
+<div class="container">
+    <div class="index-body">
+        @if(Model.Genre == null)
+        {
+            <H2>Kies een Genre</H2>
+        }
+        else
+        {
+            <h2>@Model.Genre.GenreNaam</h2>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Titel</th>
+                        <th>Uitvoerders</th>
+                        <th>Prijs</th>
+                        <th>Vrij plaatsen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var voorstelling in Model.Voorstellingen)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => voorstelling.Datum)</td>
+                            <td>@Html.DisplayFor(m => voorstelling.Titel)</td>
+                            <td>@Html.DisplayFor(m => voorstelling.Uitvoerders)</td>
+                            <td>€ @Html.DisplayFor(m => voorstelling.Prijs)</td>
+                            <td>@Html.DisplayFor(m => voorstelling.VrijePlaatsen)</td>
+                            @if(voorstelling.VrijePlaatsen > 0)
+                            {
+                                <td>@Html.ActionLink("Reserveren", "Reserveren", new { id = voorstelling.VoorstellingsNr}, new { @class = "btn btn-primary"})</td>
+                            }
+                            else
+                            {
+                                <td><p class="alert-danger">Uitverkocht</p></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
