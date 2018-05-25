@@ -1,0 +1,57 @@
+﻿@model MVC_Cultuurhuis.Models.Voorstelling
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="Header-index">
+    <div class="Header-opaque">
+
+    </div>
+</div>
+
+<div class="container">
+    <br />
+    <div class="alert-info">
+        <p>Kies het Aantal tickets voor deze voorstelling</p>
+    </div>
+
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <div class="ReservatieForm">
+            <div class="ReservatieForm-Labels">
+                <p>@Html.LabelFor(m => m.Titel, "Voorstelling")</p>
+                <p>@Html.LabelFor(m => m.Uitvoerders)</p>
+                <p>@Html.LabelFor(m => m.Datum)</p>
+                <p>@Html.LabelFor(m => m.Prijs)</p>
+                <p>@Html.LabelFor(m => m.VrijePlaatsen)</p>
+                <p>@Html.Label("Plaatsen")</p>
+
+            </div>
+
+            <div class="ReservatieForm-Values">
+                <p>@Html.DisplayFor(m => m.Titel)</p>
+                <p>@Html.DisplayFor(m => m.Uitvoerders)</p>
+                <p>@Html.DisplayFor(m => m.Datum)</p>
+                <p>@Html.DisplayFor(m => m.Prijs)</p>
+                <p>@Html.DisplayFor(m => m.VrijePlaatsen)</p>
+                <input value="1" required="required" min="1" max="@Model.VrijePlaatsen" type="number" name="aantalPlaatsen" class="form-control"/>
+                @Html.ValidationMessageFor(m => m.VrijePlaatsen, "Geef een nummer in tussen 1 en" + Model.VrijePlaatsen, new { @class = "text-danger"})
+            </div>
+        </div>
+        <div class="ReservatieForm-Btns">
+            @if (Model.VrijePlaatsen > 0)
+            {
+                @Html.ActionLink("Reserveren", "Reserveren", "Voorstelling", new { id = Model.VoorstellingsNr}, new { @class = "btn btn-success" })
+            }
+            else
+            {
+                <h2 class="alert-danger">Geen plaatsen meer beschikbaar</h2>
+            }
+
+        </div>
+    }
+
+</div>
+

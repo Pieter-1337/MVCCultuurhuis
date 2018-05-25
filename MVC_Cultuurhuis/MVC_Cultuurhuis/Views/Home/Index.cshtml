@@ -24,45 +24,53 @@
     
 <div class="container">
     <div class="index-body">
-        @if(Model.Genre == null)
+@if (Model.Genre == null)
+{
+    <div class="alert-info form-control">
+        Kies een Genre
+    </div>
+}
+else if (Model.Genre.Voorstellingen.Count < 1)
+{
+     <div class="alert-warning form-control">
+         Er zijn geen voorstellingen voor dit genre beschikbaar.
+     </div>
+}
+else
+{
+    <h2>@Model.Genre.GenreNaam</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Titel</th>
+                <th>Uitvoerders</th>
+                <th>Prijs</th>
+                <th>Vrij plaatsen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var voorstelling in Model.Voorstellingen)
         {
-            <H2>Kies een Genre</H2>
+            <tr>
+                <td>@Html.DisplayFor(m => voorstelling.Datum)</td>
+                <td>@Html.DisplayFor(m => voorstelling.Titel)</td>
+                <td>@Html.DisplayFor(m => voorstelling.Uitvoerders)</td>
+                <td>@Html.DisplayFor(m => voorstelling.Prijs)</td>
+                <td>@Html.DisplayFor(m => voorstelling.VrijePlaatsen)</td>
+                @if (voorstelling.VrijePlaatsen > 0)
+            {
+                <td>@Html.ActionLink("Reserveren", "Index", "Voorstelling", new { id = voorstelling.VoorstellingsNr }, new { @class = "btn btn-primary" })</td>
         }
         else
         {
-            <h2>@Model.Genre.GenreNaam</h2>
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Datum</th>
-                        <th>Titel</th>
-                        <th>Uitvoerders</th>
-                        <th>Prijs</th>
-                        <th>Vrij plaatsen</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var voorstelling in Model.Voorstellingen)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(m => voorstelling.Datum)</td>
-                            <td>@Html.DisplayFor(m => voorstelling.Titel)</td>
-                            <td>@Html.DisplayFor(m => voorstelling.Uitvoerders)</td>
-                            <td>€ @Html.DisplayFor(m => voorstelling.Prijs)</td>
-                            <td>@Html.DisplayFor(m => voorstelling.VrijePlaatsen)</td>
-                            @if(voorstelling.VrijePlaatsen > 0)
-                            {
-                                <td>@Html.ActionLink("Reserveren", "Reserveren", new { id = voorstelling.VoorstellingsNr}, new { @class = "btn btn-primary"})</td>
-                            }
-                            else
-                            {
-                                <td><p class="alert-danger">Uitverkocht</p></td>
-                            }
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
+            <td><p class="alert-danger">Uitverkocht</p></td>
+    }
+            </tr>
+    }
+        </tbody>
+    </table>
+}
     </div>
 </div>

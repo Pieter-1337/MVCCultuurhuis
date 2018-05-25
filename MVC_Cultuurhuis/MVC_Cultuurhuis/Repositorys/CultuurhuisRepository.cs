@@ -12,7 +12,7 @@ namespace MVC_Cultuurhuis.Repositorys
 
         public List<Genre> GetGenres()
         {
-            return db.Genres.ToList();
+            return db.Genres.OrderBy(g => g.GenreNaam).ToList();
         }
 
         public Genre GetGenre(int? id)

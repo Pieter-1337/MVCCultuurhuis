@@ -108,4 +108,43 @@ textarea {
 }
 
 
+/*Voorstelling Index page -> Reservatie*/
+.ReservatieForm{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+}
 
+.ReservatieForm-Labels{
+    width: 15%;
+    display:flex;
+    flex-direction:column
+}
+
+.ReservatieForm-Labels p{
+    height: 25px;
+    margin-bottom: 5px;
+    display:flex;
+    justify-content:flex-end
+}
+
+.ReservatieForm-Values{
+    width: 80%;
+    display: flex;
+    flex-direction:column;
+    margin-left: 5%;
+}
+
+.ReservatieForm-Values p {
+     height: 25px;
+     margin-bottom: 5px;
+     display:flex;
+
+}
+
+.ReservatieForm-Btns{
+    width: 100%;
+    display:flex;
+    margin-top: 25px;
+    margin-left: 20%;
+}
