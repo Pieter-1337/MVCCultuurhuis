@@ -18,6 +18,7 @@ namespace MVC_Cultuurhuis.Controllers
 
         }
 
+        [HttpGet]
         // GET: Voorstelling
         public ActionResult Index(int? id)
         {
@@ -25,18 +26,22 @@ namespace MVC_Cultuurhuis.Controllers
             return View(voorstelling);
         }
 
-        
+        [HttpPost]
         public ActionResult Reserveren(int? id)
         {
-            if (ModelState.IsValid)
+            var voorstelling = _voorstellingRepository.GetVoorstelling(id);
+            var BesteldeTickets = Convert.ToInt32(Request["aantalPlaatsen"].ToString());
+            if(BesteldeTickets > 0 && BesteldeTickets <= voorstelling.VrijePlaatsen)
             {
                 return View();
             }
             else
             {
-               return RedirectToAction("Index", "Voorstelling", new { id = id });
+                return RedirectToAction("Index", "Voorstelling", new { id = id });
             }
             
+
+
         }
     }
 }

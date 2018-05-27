@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    
+    
 }
 
 
@@ -17,7 +19,7 @@
         <p>Kies het Aantal tickets voor deze voorstelling</p>
     </div>
 
-    @using (Html.BeginForm(FormMethod.Post))
+    @using (Html.BeginForm("Reserveren", "Voorstelling", new { id = Model.VoorstellingsNr },FormMethod.Post))
     {
         <div class="ReservatieForm">
             <div class="ReservatieForm-Labels">
@@ -36,14 +38,20 @@
                 <p>@Html.DisplayFor(m => m.Datum)</p>
                 <p>@Html.DisplayFor(m => m.Prijs)</p>
                 <p>@Html.DisplayFor(m => m.VrijePlaatsen)</p>
-                <input value="1" required="required" min="1" max="@Model.VrijePlaatsen" type="number" name="aantalPlaatsen" class="form-control"/>
-                @Html.ValidationMessageFor(m => m.VrijePlaatsen, "Geef een nummer in tussen 1 en" + Model.VrijePlaatsen, new { @class = "text-danger"})
+
+                @*<input value="1" required="required" min="1" max="@Model.VrijePlaatsen" type="number" name="aantalPlaatsen" class="form-control" data-val="true" data-val-range="Gelieve minimum 1 en maximum @{@Model.VrijePlaatsen} tickets te bestellen" data-val-range-max="1" data-val-range-max="@{@Model.VrijePlaatsen}" />*@
+                @*@Html.ValidationMessage("aantalPlaatsen", "Gelieve minstens 1 en max " + Model.VrijePlaatsen + " tickets te bestellen", new { @class = "text-danger field-validation-valid", @data_valmsg_replace = "true"  @data_val_msg_for = "aantalPlaatsen"})*@
+                @Html.TextBox("aantalPlaatsen", "1", new { @class = "form-control valid", @data_val = "true", @data_val_range = "Gelieve minstens 1 en max " + Model.VrijePlaatsen + " tickets te bestellen", @data_val_range_min = "1", @data_val_range_max = Model.VrijePlaatsen, @required = "required",  @data_val_required = "Dit veld is verplicht"})
+                <span class="field-validation-valid text-danger" data-valmsg-for="aantalPlaatsen" data-valmsg-replace="true"></span>
+
+
+
             </div>
         </div>
         <div class="ReservatieForm-Btns">
             @if (Model.VrijePlaatsen > 0)
             {
-                @Html.ActionLink("Reserveren", "Reserveren", "Voorstelling", new { id = Model.VoorstellingsNr}, new { @class = "btn btn-success" })
+                <input value="Reserveren" type="submit" class="btn btn-success" />
             }
             else
             {
