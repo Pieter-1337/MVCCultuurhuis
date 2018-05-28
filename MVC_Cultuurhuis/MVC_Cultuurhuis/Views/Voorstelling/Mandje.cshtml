@@ -1,0 +1,57 @@
+﻿@model List<MVC_Cultuurhuis.Models.MandjeItem>
+
+@{
+    ViewBag.Title = "Mandje";
+}
+
+<div class="Header-index">
+    <div class="Header-opaque">
+
+    </div>
+</div>
+
+<div class="container">
+    <br />
+    <div class="alert-info form-control form-group">
+        <p>Inhoud van u winkelmandje</p>
+    </div>
+    @using (Html.BeginForm("Verwijderen", "Voorstelling", FormMethod.Post))
+    {
+        <table class="table-striped table-striped table">
+            <tr>
+                <th>Datum</th>
+                <th>Titel</th>
+                <th>Uitvoerders</th>
+                <th>Prijs</th>
+                <th>Plaatsen</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.Datum</th>
+                    <th><a href="@Url.Action("Index","Voorstelling", new { id = item.VoorstellingNr})">@item.Titel</a></th>
+                    <th>@item.Uitvoerders</th>
+                    <th>€ @item.Prijs</th>
+                    <th>@item.Plaatsen</th>
+                    <th><input type="checkbox" name="@item.VoorstellingNr" /></th>
+                </tr>
+            }
+        </table>
+        <div class="clearfix form-group ">
+            <button name="SelectieVerwijderen" class="pull-right btn btn-warning" type="submit">Selectie verwijderen</button>
+        </div>
+
+    }
+
+        
+    <div class="clearfix form-group" >
+        <div class="alert-info form-control" style="height: 50px;">
+            <p>Te betalen: € @ViewBag.TeBetalen <a name="Kassa" class="pull-right btn btn-primary"  href="@Url.Action("Bevestiging", "Voorstelling")">Afrekenen</a></p>
+            
+        </div>
+    </div>
+
+
+</div>

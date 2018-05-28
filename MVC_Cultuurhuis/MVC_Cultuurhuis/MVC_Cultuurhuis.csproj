@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VoorstellingController.cs" />
+    <Compile Include="Custom_Validations\UsernameUniek.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,6 +183,8 @@
     <Compile Include="Models\Klant.cs">
       <DependentUpon>Cultuur.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MandjeItem.cs" />
+    <Compile Include="Models\NieuweKlantViewModel.cs" />
     <Compile Include="Models\Reservatie.cs">
       <DependentUpon>Cultuur.tt</DependentUpon>
     </Compile>
@@ -207,6 +210,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\header-banner.jpg" />
+    <Content Include="Images\shopping-cart.png" />
     <Content Include="Models\Cultuur.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Cultuur.Context.cs</LastGenOutput>
@@ -257,6 +261,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Voorstelling\Index.cshtml" />
     <Content Include="Views\Voorstelling\Reserveren.cshtml" />
+    <Content Include="Views\Voorstelling\Mandje.cshtml" />
+    <Content Include="Views\Voorstelling\Bevestiging.cshtml" />
+    <Content Include="Views\Voorstelling\NieuweKlant.cshtml" />
+    <Content Include="Views\Voorstelling\Overzicht.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

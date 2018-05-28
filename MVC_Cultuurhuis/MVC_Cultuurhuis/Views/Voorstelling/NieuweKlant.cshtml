@@ -1,0 +1,77 @@
+﻿@model MVC_Cultuurhuis.Models.NieuweKlantViewModel
+
+@{
+    ViewBag.Title = "NieuweKlant";
+}
+
+
+<div class="Header-index">
+    <div class="Header-opaque">
+
+    </div>
+</div>
+
+<div class="container">
+    <h2>Vul je gegevens in</h2>
+    @using (Html.BeginForm("NieuweKlant", "Voorstelling", null, FormMethod.Post, new { @class = "form", role = "form" }))
+    {
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.Voornaam)</p>
+            <p>@Html.EditorFor(m => m.Voornaam, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Voornaam, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.Familienaam)</p>
+            <p>@Html.EditorFor(m => m.Familienaam, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Familienaam, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.Straat)</p>
+            <p>@Html.EditorFor(m => m.Straat, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Straat, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label" style="width: 100%;">@Html.LabelFor(m => m.Huisnr)</p>
+            <p>@Html.EditorFor(m => m.Huisnr, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Huisnr, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.Postcode)</p>
+            <p>@Html.EditorFor(m => m.Postcode, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Postcode, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.Gemeente)</p>
+            <p>@Html.EditorFor(m => m.Gemeente, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Gemeente, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.Gebruikersnaam)</p>
+            <p>@Html.EditorFor(m => m.Gebruikersnaam, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Gebruikersnaam, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.Paswoord)</p>
+            <p>@Html.EditorFor(m => m.Paswoord, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.Paswoord, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label">@Html.LabelFor(m => m.HerhaalPaswoord)</p>
+            <p>@Html.EditorFor(m => m.HerhaalPaswoord, new { htmlAttributes = new { @class = "form-control inline-block" } })</p>
+            <p>@Html.ValidationMessageFor(m => m.HerhaalPaswoord, null, new { @class = "validation-message field-validation-valid text-danger" })</p>
+        </div>
+
+        <div class="form-group">
+            <input name="toevoegen" type="submit" value="Registreer" class="btn btn-primary" />
+        </div>
+
+    }
+</div>

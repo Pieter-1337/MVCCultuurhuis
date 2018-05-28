@@ -19,5 +19,14 @@ namespace MVC_Cultuurhuis.Repositorys
         {
             return db.Voorstellingen.Find(id);
         }
+
+        public void BewaarReservatie(Reservatie reservatie)
+        {
+            var voorstelling = db.Voorstellingen.Find(reservatie.VoorstellingsNr);
+            voorstelling.VrijePlaatsen -= reservatie.Plaatsen;
+
+            db.Reservaties.Add(reservatie);
+            db.SaveChanges();
+        }
     }
 }

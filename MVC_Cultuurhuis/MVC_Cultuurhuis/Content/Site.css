@@ -23,6 +23,11 @@ textarea {
     max-width: 280px;
 }
 
+.Margin-bottom{
+    margin-bottom: 25px;
+    display:flex;
+}
+
 /*Navbar changes*/
 .navbar-inverse{
     background: transparent !important; 

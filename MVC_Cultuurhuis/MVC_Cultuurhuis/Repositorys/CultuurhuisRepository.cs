@@ -27,5 +27,24 @@ namespace MVC_Cultuurhuis.Repositorys
                         orderby voorstelling.Datum select voorstelling;
             return query.ToList();
         }
+
+        public Klant GetKlant(string naam, string paswoord)
+        {
+            var Klant = (from klant in db.Klanten where klant.GebruikersNaam == naam && klant.Paswoord == paswoord select klant).FirstOrDefault();
+            return Klant;
+        }
+
+        public bool BestaatKlant(string gebruikersnaam)
+        {
+            var bestaandeKlant = (from klant in db.Klanten where klant.GebruikersNaam == gebruikersnaam select klant).FirstOrDefault();
+            return bestaandeKlant != null;
+        }
+
+        public void VoegKlantToe(Klant klant)
+        {
+            db.Klanten.Add(klant);
+            db.SaveChanges();
+        }
+    
     }
 }

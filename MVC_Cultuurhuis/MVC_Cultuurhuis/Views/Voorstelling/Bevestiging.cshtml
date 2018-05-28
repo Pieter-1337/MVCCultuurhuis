@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Bevestiging";
+}
+
+<div class="Header-index">
+    <div class="Header-opaque">
+
+    </div>
+</div>
+
+<div class="container">
+    @if (Session["klant"] != null)
+    {
+        var klant = (MVC_Cultuurhuis.Models.Klant)Session["klant"];
+        ViewBag.klant = klant.Voornaam + " " + klant.Familienaam + " " + klant.Straat + " " + klant.HuisNr + " " + klant.Postcode + " " + klant.Gemeente;
+    }
+
+
+    @using (Html.BeginForm("Bevestiging", "Voorstelling", FormMethod.Post))
+    {
+        <H2>Stap 1: Gelieve in te loggen om verder tegaan naar de kassa</H2>
+
+        <div class="form-group Margin-bottom">
+            <label class="col-md-2 control-label">Gebruikersnaam</label>
+            <div class="col-md-10">
+                <input name="naam" id="naam" type="text" class="form-control" @if (ViewBag.klant != null) { <text> disabled</text>} />
+            </div>
+        </div>
+
+        <div class="form-group Margin-bottom">
+            <label class="col-md-2 control-label">Paswoord</label>
+            <div class="col-md-10">
+                <input name="paswoord" id="paswoord" type="password" class="form-control" @if (ViewBag.klant != null) { <text> disabled</text>} />
+            </div>
+        </div>
+
+
+
+        <div class="form-group Margin-bottom">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" name="zoek" value="Log in" class="btn btn-primary" @if (ViewBag.klant != null) { <text> disabled</text>} />
+                <input type="submit" name="nieuw" value="Maak account" class="btn btn-warning" @if (ViewBag.klant != null) { <text> disabled</text>} />
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <hr />
+
+        if (ViewBag.klant != null)
+        {
+            <p class="alert alert-success">@ViewBag.klant</p>
+        }
+        if (ViewBag.errorMessage != null)
+        {
+            <p class="alert alert-danger"> @ViewBag.errorMessage</p>
+        }
+
+        <H2>Stap 2: Gelieve te bevestigen</H2>
+        <p><input type="submit" name="bevestig" value="Bevestigen" class="btn btn-success" @if (ViewBag.klant == null) { <Text> disabled </text> } /></p>
+    }
+</div>
+

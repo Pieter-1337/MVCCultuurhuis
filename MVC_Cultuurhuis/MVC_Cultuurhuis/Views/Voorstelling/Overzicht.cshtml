@@ -1,0 +1,75 @@
+﻿@using MVC_Cultuurhuis.Models;
+
+@{
+    ViewBag.Title = "Overzicht";
+}
+
+<div class="Header-index">
+    <div class="Header-opaque">
+
+    </div>
+</div>
+
+<div class="container">
+    <h2>Overzicht van je bestelling</h2>
+    <hr />
+
+    @if((ViewBag.gelukt as ICollection<MandjeItem>).Count() > 0)
+    {
+
+        <h3>Gelukte reserveringen</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Titel</th>
+                    <th>Uitvoerders</th>
+                    <th>Prijs</th>
+                    <th>Plaatsen</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(MandjeItem item in ViewBag.gelukt)
+                {
+                    <tr>
+                        <td class="col-md-2">@item.Datum</td>
+                        <td class="col-md-3">@item.Titel</td>
+                        <td class="col-md-3">@item.Uitvoerders</td>
+                        <td class="col-md-2">€ @item.Prijs</td>
+                        <td class="col-md-2">@item.Plaatsen</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if((ViewBag.mislukt as ICollection<MandjeItem>).Count() > 0)
+    {
+        <h3>Mislukte reserveringen</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Titel</th>
+                    <th>Uitvoerders</th>
+                    <th>Prijs</th>
+                    <th>Plaatsen</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(MandjeItem item in ViewBag.mislukt)
+                {
+                    <tr>
+                        <td class="col-md-2">@item.Datum</td>
+                        <td class="col-md-3">@item.Titel</td>
+                        <td class="col-md-3">@item.Uitvoerders</td>
+                        <td class="col-md-2">€ @item.Prijs</td>
+                        <td class="col-md-2">@item.Plaatsen</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    }
+</div>
+

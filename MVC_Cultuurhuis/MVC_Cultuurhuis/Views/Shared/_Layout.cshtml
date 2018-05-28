@@ -23,6 +23,11 @@
                     <li>@Html.ActionLink("Tickets", "Index", "Home")</li>
                     <li>@Html.ActionLink("Over ons", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactgegevens", "Contact", "Home")</li>
+                    @if (Session.Keys.Count > 0)
+                    {
+                    <li style="margin-left: 50px;"><a href="@Url.Action("Mandje", "Voorstelling")"><span class="glyphicon glyphicon-shopping-cart"  >(@Session.Keys.Count)</span></a></li>
+                    <li style="margin-left: 20px;"><a href="@Url.Action("Bevestiging", "Voorstelling")" class="btn btn-primary">Afrekenen</a></li>
+                    }
                 </ul>
             </div>
         </div>
@@ -30,8 +35,8 @@
     <div class="">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="container">
+            <p>&copy; @DateTime.Now.Year - Het Cultuurhuis</p>
         </footer>
     </div>
 

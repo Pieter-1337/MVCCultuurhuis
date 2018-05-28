@@ -2,8 +2,17 @@
 
 @{
     ViewBag.Title = "Index";
-    
-    
+
+    int aantal;
+    if(Session[Model.VoorstellingsNr.ToString()] != null)
+    {
+        aantal = Convert.ToInt16(Session[Model.VoorstellingsNr.ToString()]);
+    }
+    else
+    {
+        aantal = 1;
+    }
+
 }
 
 
@@ -15,8 +24,8 @@
 
 <div class="container">
     <br />
-    <div class="alert-info">
-        <p>Kies het Aantal tickets voor deze voorstelling</p>
+    <div class="alert alert-info">
+        <h3>Kies het Aantal tickets voor deze voorstelling</h3>
     </div>
 
     @using (Html.BeginForm("Reserveren", "Voorstelling", new { id = Model.VoorstellingsNr },FormMethod.Post))
@@ -41,7 +50,7 @@
 
                 @*<input value="1" required="required" min="1" max="@Model.VrijePlaatsen" type="number" name="aantalPlaatsen" class="form-control" data-val="true" data-val-range="Gelieve minimum 1 en maximum @{@Model.VrijePlaatsen} tickets te bestellen" data-val-range-max="1" data-val-range-max="@{@Model.VrijePlaatsen}" />*@
                 @*@Html.ValidationMessage("aantalPlaatsen", "Gelieve minstens 1 en max " + Model.VrijePlaatsen + " tickets te bestellen", new { @class = "text-danger field-validation-valid", @data_valmsg_replace = "true"  @data_val_msg_for = "aantalPlaatsen"})*@
-                @Html.TextBox("aantalPlaatsen", "1", new { @class = "form-control valid", @data_val = "true", @data_val_range = "Gelieve minstens 1 en max " + Model.VrijePlaatsen + " tickets te bestellen", @data_val_range_min = "1", @data_val_range_max = Model.VrijePlaatsen, @required = "required",  @data_val_required = "Dit veld is verplicht"})
+                @Html.TextBox("aantalPlaatsen", @aantal , new { @class = "form-control valid", @data_val = "true", @data_val_range = "Gelieve minstens 1 en max " + Model.VrijePlaatsen + " tickets te bestellen", @data_val_range_min = "1", @data_val_range_max = Model.VrijePlaatsen, @required = "required",  @data_val_required = "Dit veld is verplicht"})
                 <span class="field-validation-valid text-danger" data-valmsg-for="aantalPlaatsen" data-valmsg-replace="true"></span>
 
 
